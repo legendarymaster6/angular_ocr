@@ -1,0 +1,19 @@
+.upload-box {
+  border: 2px dashed grey;
+  background-color: rgb(243, 250, 249);
+  .upload-box-text {
+    font-size: 20px;
+  }
+  .upload-box-icon {
+    font-size: 50px;
+  }
+}
+
+.upload-box:hover {
+  cursor: pointer;
+  background-color: rgb(231, 244, 243);
+  .upload-box-icon {
+    font-size: 50px;
+    color: rgb(58, 105, 134);
+  }
+}

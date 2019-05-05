@@ -1,0 +1,33 @@
+.preview-image {
+  position: relative;
+  width: 95%;
+  box-shadow: 5px 10px 8px #888888;
+  margin-bottom: 20px;
+  border: 1px solid #999999; 
+}
+
+.select-rect {
+  top: 0px;
+  position: absolute;
+  background-color: rgba(0, 204, 153, 0.0980392156862745);
+  width: 100%;
+  z-index: 5;
+  border: 1px solid #0066C8;
+}
+
+.select-rect.selected {
+  background-color: transparent;
+  border-width: 2px;
+}
+
+.select-rect:hover {
+  cursor: pointer;
+}
+
+.dash-line {
+  top: 0px;
+  position: absolute; 
+  width: 100%;
+  border-top: 5px dashed #0066C8;
+  z-index: 10;
+}

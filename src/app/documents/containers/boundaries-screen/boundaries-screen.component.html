@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+<div class="action-bar">
+  <div routerLink="/management/documents" class="return-link">
+    < Templates
+  </div>
+  <div routerLink="/templates/create" class="return-link ml-2">
+    < New Parsing Templates
+  </div>
+  <div class="text-white ml-3 mt-2 float-left">
+    Create New Parser Template
+  </div>
+  <button class="float-right filled mr-3" style="margin-top: 6px;" (click)="onExtract($event)">Extract Data</button>
+  <button class="float-right unfilled mr-3" style="margin-top: 6px;" (click)="onSave($event)">Save</button>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="ml-4 mt-2 font-16">
+      Uploaded documents:
+    </div>
+    <div class="preview">
+      <div *ngIf="(pages$ | async).length==0">
+        <img src="assets/img/loading.gif">
+      </div>
+      <div class="mt-2" *ngIf="(pages$ | async).length!=0"> 
+        <img class="preview-image" tabIndex="0" [attr.src]="(pages$ | async)[0].image">
+        <div>
+          <b>{{ (document$ | async).name }}</b> {{ (document$ | async).size }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="content">
+    <div class="ml-4 mt-2 font-16">
+      Set boundaries
+    </div>
+    <div class="preview">
+      <div *ngIf="(pages$ | async).length==0">
+        <img src="assets/img/loading.gif">
+      </div>
+      <page-selector class="mb-3" 
+        *ngFor="let page of (pages$ | async); index as i" 
+        [src]="page.image" 
+        [page_height]="page.height"
+        [start_y]="page.start_y"
+        [end_y]="page.end_y"
+        (start_pos)="onStartPos($event, i)"
+        (end_pos)="onEndPos($event, i)"></page-selector>
+    </div>
+  </div>
+</div>

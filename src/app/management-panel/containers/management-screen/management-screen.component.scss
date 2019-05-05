@@ -1,0 +1,44 @@
+.sidebar {
+  position: fixed; 
+  width: 250px; 
+  height: 100%;
+  background-color: rgba(0, 67, 74, 1);
+
+  .sidebar-nav {
+    margin-top: 20px;
+    position: absolute; 
+    width: 250px; 
+    list-style: none;
+    padding: 0;
+
+    li {
+      color: grey;
+      text-indent: 20px;
+      line-height: 50px;
+      outline: 0;
+
+      a {
+        display: block;
+        text-decoration: none;
+        i {
+          display: inline;
+        }
+      }
+
+    }
+
+    li.active {
+      color: white;
+      background-color: rgba(0, 48, 53, 1); 
+    }
+
+    li:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.main {
+  margin-left: 250px;
+}

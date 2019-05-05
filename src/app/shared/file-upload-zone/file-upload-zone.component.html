@@ -1,0 +1,21 @@
+<div class="text-center">
+  <div 
+    ng2FileDrop
+    *ngIf="status=='NOT_LOADING'"
+    [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+    [uploader]="uploader"
+    (onFileDrop)="onFileDropped($event)"
+    class="text-center p-5 upload-box">
+    <p class="upload-box-text">
+      <span>Click to download sample documents from your hard drive</span>
+    </p>
+    <i class="fa fa-cloud-upload upload-box-icon"></i>
+    <p class="upload-box-text">
+      <span>or drag it here to upload it</span>
+    </p>
+  </div>
+
+  <div *ngIf="status=='LOADING'">
+    <img src="assets/img/loading.gif">
+  </div>
+</div>

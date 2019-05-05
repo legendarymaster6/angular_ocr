@@ -1,0 +1,156 @@
+.main {
+	position: fixed; 
+	top: 104px; 
+	width: 100%; 
+	height: 100%;
+	background-color: #E4E4E4;
+
+	.preview-panel {
+		position: fixed; 
+		width: 50%;
+		float: left; 
+		height: calc(100% - 104px);
+		margin-top: 1em;
+		padding-left: 1em;
+		padding-right: 0.5em;
+
+		.preview {
+			overflow-y: auto; 
+			position: relative; 
+			max-height: calc(100% - 50px);
+			margin-top: 5px;
+			text-align: center;
+
+			.preview-image {
+				width: 100%;
+				box-shadow: 5px 10px 8px #888888;
+				margin-bottom: 20px;
+				border: 1px solid #999999;
+			}
+   		}
+	}
+
+	.divider {
+		position: fixed; 
+		width: 3px; 
+		margin-left: 50%; 
+		height: calc(100% - 124px); 
+		margin-top: 10px; 
+		margin-bottom: 10px; 
+		background-color: #BCBCBC; 
+		float: left;
+	}
+
+	.content {
+		position: fixed;
+		width: 50%;
+		left: 50%;
+		float: left;
+		height: calc(100% - 104px);
+	}
+	
+	.info-btn {
+		font-size: 24px;
+		color: #999999;
+		background-color: #F2F2F2;
+		border: 1px solid #999999;
+		width: 40px;
+		height: 30px;
+		float: right;
+		outline: 0;
+	}
+
+	.info-btn:hover {
+		border-color: black;
+		cursor: pointer;
+	}
+
+	.info-panel {
+		position: fixed;
+		width: 400px;
+		height: 100%;
+		left: 100%;
+		background-color: white;
+		z-index: 999;
+		border: 1px solid black;
+		-webkit-transition: left 1s;
+		transition: left 1s;
+
+		.info {
+			margin-top: 50px;
+		}
+
+		.info-row {
+			border: 1px solid #999999;
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-top: -1px;
+			height: 30px;
+			padding-top: 5px;
+		}
+
+		.close-btn {
+			font-size: 24px;
+			color: #999999;
+			background-color: white;
+			border: 1px solid #999999;
+			width: 40px;
+			height: 30px;
+			float: right;
+			outline: 0;
+		}
+	
+		.close-btn:hover {
+			cursor: pointer;
+			border-color: #00434a;
+			color: #00434A;
+		}
+	}
+
+}
+
+table {
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-top: 1em;
+	background: white;
+	font-size: 12px;
+	
+	td {
+		border: 1px solid #999999;
+		padding-left: 5px;
+	}
+
+	thead td {
+		text-align: center;
+	}
+
+	td:nth-child(1) {
+		width: 3%;
+	}
+	td:nth-child(2) {
+		width: 20%;
+	}
+	td:nth-child(3) {
+		width: 10%;
+	}
+	td:nth-child(4) {
+		width: 18%;
+	}
+	td:nth-child(5) {
+		width: 18%;
+	}
+	td:nth-child(6) {
+		width: 8%;
+	}
+	td:nth-child(7) {
+		width: 8%;
+	}
+	td:nth-child(8) {
+		width: 8%;
+	}
+	td:nth-child(8) {
+		width: 8%;
+	}
+}
+

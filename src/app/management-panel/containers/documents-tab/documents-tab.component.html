@@ -1,0 +1,40 @@
+<div class="tab">
+  <div [ngClass]="{'tab-item': true, 'selected': (selectedTab$ | async)=='all'}" (click)="onAllSelected($event)">
+    All Documents ({{ (documentStats$ | async).all_count }})
+  </div>
+  <div [ngClass]="{'tab-item': true, 'selected': (selectedTab$ | async)=='processed'}" (click)="onProcessedSelected($event)">
+    Processed ({{ (documentStats$ | async).processed_count }})
+  </div>
+</div>
+
+<div *ngIf="(selectedTab$ | async)=='all' || (selectedTab$ | async)=='processed'" class="my-2" style="padding: 2px; overflow:auto;">
+  <div style="float: left; margin-top: 12px; margin-left: 4px; margin-right: 10px;">
+    <mat-checkbox class="ml-2"></mat-checkbox>
+  </div>
+  <select class="form-control" style="float: left; width: 150px;">
+    <option>Export to Excel</option>
+    <option>Delete Documents</option>
+  </select>
+</div>
+
+<div *ngIf="(selectedTab$ | async)=='all' || (selectedTab$ | async)=='processed'">
+  <document-row *ngFor="let document of documentList$ | async"
+    [name]="document.name"
+    [status]="document.status"
+    [size]="document.size"
+    [datetime]="document.datetime"
+    [extracted]="document.extracted"
+    (click)="onDocRowClick($event, document.document_id)"
+    (extract)="onDocRowExtract(document.document_id)"
+    (view)="onDocRowView(document.document_id)">
+  </document-row>
+</div>
+
+<div *ngIf="(selectedTab$ | async)=='upload'" class="mt-2 ml-2" style="width: 400px;">
+  <file-upload-zone
+    [url]="'http://localhost:3000/documents/upload'"
+    (onUploadFinished)="onUploadFinished($event)">
+  </file-upload-zone>
+</div>
+
+<document-detail #docDetail [style.left]="documentDetailLeft$ | async" [pages$]="selectedPages$" [data]="selectedDocument$ | async" (close)="onCloseDocDetail($event)"></document-detail>

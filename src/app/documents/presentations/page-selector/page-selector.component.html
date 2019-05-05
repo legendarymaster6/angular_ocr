@@ -1,0 +1,7 @@
+<div class="preview-image">
+  <img #image [attr.src]="src" style="width: 100%;">
+  
+  <div #select (click)="onSelect($event)" [ngClass]="{'selected': selected, 'select-rect': true}" class="select-rect"></div>
+  <div #topDash draggable="true" (drag)="onDragTop($event)" (dragstart)="onDragStartTop($event)" class="dash-line"></div>
+  <div #bottomDash draggable="true" (drag)="onDragBottom($event)" (dragstart)="onDragStartBottom($event)" class="dash-line"></div>
+</div>

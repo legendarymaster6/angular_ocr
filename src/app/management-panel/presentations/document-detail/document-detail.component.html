@@ -1,0 +1,68 @@
+<div class="doc-detail">
+  <div class="doc-action-bar">
+    <div class="tab-btn" [ngClass]="{'selected':selectedTab=='Parsed Data'}" (click)="selectedTab='Parsed Data'">
+      Parsed Data
+    </div>
+    <div style="float: left; border-left: 1px solid #00434A; height: 23px; margin-left: 5px; margin-right: 5px;"></div>
+    <div class="tab-btn" [ngClass]="{'selected':selectedTab=='Original File'}" (click)="selectedTab='Original File'">
+      Original File
+    </div>
+    
+    <button class="small-btn mr-2" (click)="onClose($event)"><i class="fa fa-close" style="position: relative; top: -5px;"></i></button>
+    <button class="small-btn mr-2"><i class="fa fa-angle-right" style="position: relative; top: -5px;"></i></button>
+    <button class="small-btn mr-2"><i class="fa fa-angle-left" style="position: relative; top: -5px;"></i></button>
+    <button class="filled float-right mr-2" style="height: 30px;">Parse Document</button>
+  </div>
+
+  <div *ngIf="selectedTab=='Parsed Data'">
+    <div class="row result-row">
+      <div class="col-2">
+        Document ID
+      </div>
+      <div class="col-10">
+        {{ data && data.document_id }}
+      </div>
+    </div>
+    <div class="row result-row">
+      <div class="col-2">
+        File Name
+      </div>
+      <div class="col-10">
+        {{ data && data.name }}
+      </div>
+    </div>
+    <div class="row result-row">
+      <div class="col-2">
+        Import Date
+      </div>
+      <div class="col-10">
+        {{ data && data.import_date }}
+      </div>
+    </div>
+    <div class="row result-row">
+      <div class="col-2">
+        Last Parse Date
+      </div>
+      <div class="col-10">
+        {{ data && data.parse_date }}
+      </div>
+    </div>
+
+    <div class="parse-data">
+      <div class="no-data-panel">
+        No Data was extracted
+        <br>
+        Please check if you defined some matching <a routerLink="../templates">parsing templates</a>.
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab=='Original File'" class="preview">
+    <div *ngIf="(pages$ | async) as pages">
+      <img *ngFor="let page of pages" class="preview-image" [attr.src]="page.image">
+    </div>
+    <div *ngIf="(pages$ | async).length==0">
+      <img src="assets/img/loading.gif">
+    </div>
+  </div>
+</div>

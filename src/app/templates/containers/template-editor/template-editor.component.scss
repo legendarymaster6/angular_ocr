@@ -1,0 +1,117 @@
+$logo-color: #FDD058;
+$company-color: #FF825A;
+$date-color: #FF6812;
+$description-color: #A57A94;
+$name-color: #2E9EAF;
+$icd-color: #2ECFA3;
+$paid-color: #8EBC8B;
+$charged-color: #FF82A6;
+$adjust-color: #AD342E;
+
+.sidebar {
+  position: fixed;
+  float: left;
+  width: 250px;
+  height: calc(100% - 104px);
+  background-color: #E4E4E4;
+
+  .edit-box {
+    width: 230px;
+    margin-left: 10px;
+  }
+
+  .item {
+    position: relative;
+    margin-top: 3px;
+    margin-left: 10px;
+    width: 230px;
+    height: 35px;
+    background-color: white;
+    border-left: 3px solid;
+    padding-left: 10px;
+    padding-top: 6px;
+  }
+
+  .item:hover {
+    left: 0.1em;
+    cursor: pointer;
+  }
+
+  .sidebar-btn {
+    margin-top: 1em;
+    margin-left: 10px;
+    padding: 2px 10px 2px 10px;
+    background-color: #666666;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: white;
+  }
+
+  .sidebar-btn:hover {
+    background-color: #008B86;
+    cursor: pointer;
+  }
+  
+  .item.logo {
+    border-color: $logo-color;
+  }
+
+  .item.company {
+    border-color: $company-color;
+  }
+
+  .item.date {
+    border-color: $date-color;
+  }
+
+  .item.description {
+    border-color: $description-color;
+  }
+
+  .item.name {
+    border-color: $name-color;
+  }
+
+  .item.icd {
+    border-color: $icd-color;
+  }
+
+  .item.paid {
+    border-color: $paid-color;
+  }
+
+  .item.charged {
+    border-color: $charged-color;
+  }
+
+  .item.adjust {
+    border-color: $adjust-color;
+  }
+
+}
+
+.main {
+  position: fixed;
+  margin-left: 250px;
+  height: calc(100% - 104px);
+  width: calc(100% - 250px);
+  .content {
+    position: fixed;
+    height: calc(100% - 104px);
+    padding-left: 50px;
+    padding-right: 50px;
+    width: calc(100% - 300px);
+  }
+}
+
+.pos-txt {
+  width: 40px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px transparent;
+  float: left;
+  padding-top: 3px;
+  padding-left: 0.2em;
+  margin-top: 10px;
+  margin-left: 0.5em;
+}

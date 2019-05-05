@@ -1,0 +1,10 @@
+.inline-operation-box {
+  height: 40px;
+  border-color: rgba(153, 153, 153, 1);
+}
+
+.inline-operation-box:hover {
+  .inline-operation-btn {
+    visibility: visible;
+  }
+}

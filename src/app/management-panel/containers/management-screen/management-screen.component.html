@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<div class="action-bar">
+  <div *ngIf="router.url=='/management/documents'">
+    <button class="normal px-2 mr-2 float-right" style="margin-top: 5px; height: 30px; font-size: 18px;" (click)="onRefresh()"><i class="fa fa-refresh"></i></button>
+    <button class="filled px-2 mr-2 float-right" style="margin-top: 5px; height: 30px;" (click)="onUpload()">Upload Documents</button>
+  </div>
+  <div *ngIf="router.url=='/management/templates'">
+    <button class="filled px-2 mr-2 float-right" style="margin-top: 5px; height: 30px;" (click)="onCreateParser()">Add Parsing Templates</button>
+  </div>
+</div>
+
+<div class="sidebar">
+  <ul class="sidebar-nav font-16">
+    <li routerLink="documents" routerLinkActive="active">
+      <a><i class="fa fa-file"></i>&nbsp;&nbsp;&nbsp;Documents</a>
+    </li>
+    <li routerLink="templates" routerLinkActive="active">
+      <a><i class="fa fa-list"></i>&nbsp;&nbsp;&nbsp;Parsing Templates</a>
+    </li>
+    <li>
+      <a><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;Settings</a>
+    </li>
+  </ul>
+</div>
+
+<div class="main">
+  <router-outlet></router-outlet>
+</div>

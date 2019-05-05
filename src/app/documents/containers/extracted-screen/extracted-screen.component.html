@@ -1,0 +1,115 @@
+<app-header></app-header>
+
+<div class="action-bar">
+  <div routerLink="/management/documents" class="return-link">
+    < Documents
+  </div>
+  <div class="text-white ml-3 mt-2 float-left">
+    Extracted Data
+  </div>
+  <a href="http://localhost:3000/documents/{{documentId}}/export" class="float-right filled mr-3" style="margin-top: 6px;">Export to Excel</a>
+</div>
+
+<div class="main">
+  <div class="preview-panel">
+    <div class="preview">
+      <div *ngIf="(pages$ | async) == null || (pages$ | async).length == 0">
+        <img src="assets/img/loading.gif">
+      </div>
+      <div class="mt-2" *ngIf="(pages$ | async) != null">
+        <img class="preview-image" tabIndex="0" *ngFor="let page of (pages$ | async)" [attr.src]="page.image">
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="content">
+    <div class="form-row align-items-center my-3 ml-2 float-left">
+      <div class="col-auto">
+        Document:
+      </div>
+      <div class="col-auto">
+        <select class="form-control">
+          <option>Pharmacy-Invoice1</option>
+        </select>
+      </div>
+      <div class="col-auto mt-2">
+        <mat-checkbox></mat-checkbox>
+      </div>
+      <div class="col-auto">
+        Merge Extracted Data
+      </div>
+    </div>
+    <div class="float-right mt-3 mr-3">
+      <button (click)="onInfoButton($event)" class="info-btn"><i class="fa fa-info" style="position: relative; top: -3px;"></i></button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Company Name</td>
+          <td>Date of Service</td>
+          <td>Description</td>
+          <td>Provider</td>
+          <td>ICD 9</td>
+          <td>Dollar Amt. Paid</td>
+          <td>Dollar Amt. Charged</td>
+          <td>Dollar Amt. Adjust</td>
+        </tr>      
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of (result$ | async)?.ocr_result">
+          <td>{{result[8]}}</td>
+          <td>{{result[0]}}</td>
+          <td>{{result[1]}}</td>
+          <td>{{result[2]}}</td>
+          <td>{{result[3]}}</td>
+          <td>{{result[4]}}</td>
+          <td>{{result[5]}}</td>
+          <td>{{result[6]}}</td>
+          <td>{{result[7]}}</td>
+        </tr>
+      </tbody>
+    </table>  
+  </div>
+
+  <div #infoPanel class="info-panel">
+    <button (click)="onCloseInfoButton($event)" class="close-btn mr-2 mt-2"><i class="fa fa-times" style="position: relative; top: -3px;"></i></button>
+    <div class="info">
+      <div class="row info-row">
+        <div class="col-4">
+          Document ID:
+        </div>
+        <div class="col-8">
+          c48fffb4511ea5e784f00ce847
+        </div>
+      </div>
+      <div class="row info-row">
+        <div class="col-4">
+          File Name:
+        </div>
+        <div class="col-8">
+          Pharmacy-Invoice.pdf
+        </div>
+      </div>
+      <div class="row info-row">
+        <div class="col-4">
+          Import Date:
+        </div>
+        <div class="col-8">
+          09.09.2018 11:50
+        </div>
+      </div>
+      <div class="row info-row">
+        <div class="col-4">
+          Last Parse Date:
+        </div>
+        <div class="col-8">
+          09.09.2018 11:51
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

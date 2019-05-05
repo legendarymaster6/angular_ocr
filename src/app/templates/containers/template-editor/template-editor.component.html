@@ -1,0 +1,111 @@
+<div class="action-bar">
+  <div routerLink="/management/templates" class="return-link">
+    < Templates
+  </div>
+  <div class="text-white ml-3 mt-2 float-left">
+    {{ isCreate? 'Create New Parser Template': 'Edit Parser Template' }}
+  </div>
+  <button *ngIf="(selectedDocument$ | async)" class="float-right filled mr-3" style="margin-top: 6px;" (click)="onSave($event)">{{ (isCreated$ | async) ? 'Create New Template' : 'Save Template' }}</button>
+  <button class="float-right unfilled mr-3" style="margin-top: 6px;">Change Sample Document</button>
+</div>
+
+<div style="position: fixed; top: 104px; width: 100%; height: 100%;">
+  <div class="sidebar">
+    <p class="mt-3 mb-2 ml-3 text-dark">
+      Parser Name:
+    </p>
+    <input type="text" class="form-control edit-box" [(ngModel)]="parserName">
+    <p class="mt-4 mb-3 ml-3 text-dark">
+      Choose Tag and Crop the Area:
+    </p>
+    <div class="item logo" (click)="onSelectRect($event, 0)">
+      <i class="fa fa-image mr-2"></i>Logo
+    </div>
+    <div class="item company" (click)="onSelectRect($event, 1)">
+      <i class="fa fa-font mr-2"></i>Company Name
+    </div>
+    <div class="item date" (click)="onSelectRect($event, 2)">
+      <i class="fa fa-calendar mr-2"></i>Date of Service
+    </div>
+    <div class="item description" (click)="onSelectRect($event, 3)">
+      <i class="fa fa-align-justify mr-2"></i>Description
+    </div>
+    <div class="item provider" (click)="onSelectRect($event, 4)">
+      <i class="fa fa-font mr-2"></i>Provider Name
+    </div>
+    <div class="item icd" (click)="onSelectRect($event, 5)">
+      <i class="fa fa-hashtag mr-2"></i>ICD 9
+    </div>
+    <div class="item paid" (click)="onSelectRect($event, 6)">
+      <i class="fa fa-dollar ml-1 mr-2"></i>Dollar Amount Paid
+    </div>
+    <div class="item charged" (click)="onSelectRect($event, 7)">
+      <i class="fa fa-dollar ml-1 mr-2"></i>Dollar Amount Charged
+    </div>
+    <div class="item adjust" (click)="onSelectRect($event, 8)">
+      <i class="fa fa-dollar ml-1 mr-2"></i>Dollar Amount Adjustment
+    </div>
+    <button *ngIf="(selectedDocument$ | async)" class="sidebar-btn" (click)="onSave($event)">{{ (isCreated$ | async) ? 'Create New Template' : 'Save Template' }}</button>
+  </div>
+
+  <div class="main" style="overflow: auto;">
+
+    <div class="content" *ngIf="(selectedDocument$ | async) != 0">
+      <div class="py-3" style="height: 30px;">
+        <div class="float-left">{{ (document$ | async)?.file_name }}</div>
+        <div class="form-row align-items-center float-right">
+          <div class="col-auto">
+            Page: 
+          </div>
+          <div class="col-auto">
+            <select class="form-control" (change)="onPageSelect($event.target.value)">
+              <option *ngFor="let number of (pageNumbers$ | async)">{{ number }}</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            / {{ (document$ | async)?.page_num }}
+          </div>
+        </div>
+      </div>
+
+      <div #scrollView style="position: relative; margin-top: 30px; max-height: calc(100% - 80px); overflow-y: auto; text-align: center; scroll-behavior: smooth;">
+        <div #innerPage style="position: relative;" *ngIf="(pages$ | async) as pages">
+          <img *ngFor="let page of pages" [attr.src]="page.image" style="border: 1px solid #999999; width: 96%; box-shadow: 5px 10px 8px #888888; margin-bottom: 20px;">
+        </div>
+        <div *ngIf="(pages$ | async).length==0">
+          <img src="assets/img/loading.gif">
+        </div>
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="content" *ngIf="(selectedDocument$ | async) == 0">
+      <p class="mt-3">
+        Please select a document
+      </p>
+      <select class="form-control" style="width: 500px;" [(ngModel)]="selectedDocId">
+        <option *ngFor="let document of (documentList$ | async)" [value]="document.id">{{document.name}}</option>
+      </select>
+      <button class="filled mt-3" (click)="onSelect()">Select</button>
+    </div>
+
+    <div [ngStyle]="{'visibility': (selectedField ? 'visible': 'hidden')}" style="position: absolute; height: 50px; background-color: #003035; bottom: 0; z-index: 10; width: 100%; color: white;}">
+      <div class="float-left ml-3" style="margin-top: 15px;">
+        Position
+      </div>
+      <input class="pos-txt" type="text" [(ngModel)]="selectedBox.left">
+      <input class="pos-txt" type="text" [(ngModel)]="selectedBox.top">
+      <div class="float-left ml-3" style="margin-top: 15px;">
+        Size
+      </div>
+      <input class="pos-txt" type="text" [(ngModel)]="selectedBox.width">
+      <input class="pos-txt" type="text" [(ngModel)]="selectedBox.height">
+      <mat-checkbox class="float-left mt-3 ml-1"></mat-checkbox>
+      <div class="float-left ml-1" style="margin-top: 15px;">
+        User for following pages
+      </div>
+      <!-- <button class="float-right filled mr-3" style="margin-top: 12px;">Confirm Selection</button> -->
+      <button class="float-right unfilled mr-3" style="margin-top: 12px;" (click)="onRemoveSelection($event)">Remove Selection</button>    
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="mb-2">
+  {{ title }}
+</div>
+<div class="inline-operation-box border py-1 px-1">
+  <p class="my-1 float-left">{{ description }}</p>
+  <button class="inline-operation-btn float-right" (click)="onDelete($event)"><i class="fa fa-trash"></i> Delete</button>
+  <button class="inline-operation-btn float-right" (click)="onCopy($event)"><i class="fa fa-copy"></i> Copy</button>
+  <button class="inline-operation-btn float-right" (click)="onEdit($event)"><i class="fa fa-edit"></i> Edit</button>  
+</div>

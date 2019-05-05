@@ -1,0 +1,14 @@
+<div class="m-3">
+  <h6>All Parser Templates</h6>
+</div>
+<div>
+  <div *ngFor="let parser of (parserList$ | async)" class="doc-row py-1">
+    <div class="ml-3 mt-1 float-left">
+      {{ parser.name }}
+    </div>
+    <div class="float-right h-100" style="width: 16px;"></div>
+    <button class="inline-operation-btn float-right"><i class="fa fa-trash"></i> Delete</button>
+    <button class="inline-operation-btn float-right"><i class="fa fa-copy"></i> Copy</button>
+    <button class="inline-operation-btn float-right" (click)="onEdit(parser.parser_id)"><i class="fa fa-edit"></i> Edit</button>  
+  </div>
+</div>

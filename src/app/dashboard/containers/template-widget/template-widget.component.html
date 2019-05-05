@@ -1,0 +1,67 @@
+<div class="card">
+  
+  <div class="card-body" *ngIf="screenStatus=='FIRST_SCREEN'" >
+    <div class="text-center" style="margin-top: 20px;">
+      <div>
+        <img src="assets/img/dashboard/template-icon.png">
+      </div>
+      <br>
+      <div>
+        <p>
+          Parser Templates
+        </p>
+        <button type="button" class="btn btn-info btn-sm" (click)="screenStatus='PARSER_SCREEN'">Create Parser Template</button>                  
+      </div>
+    </div>
+    <br>
+    <div>
+      <inline-operation 
+        [title]="templateTitle"
+        [description]="templateDescription"
+        (edit)="onRecentParserEdit($event)"
+        (copy)="onRecentParserEdit($event)"
+        (delete)="onRecentParserEdit($event)">
+      </inline-operation>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="screenStatus=='PARSER_SCREEN'" >
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Parser Name</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <br><br>
+
+    <file-upload-zone
+      [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+      [uploader]="uploader"
+      [progress]="progress"
+      [status]="uploadStatus"
+      (onFileDrop)="onFileDropped($event)"
+      (click)="onFileDropped($event)">
+    </file-upload-zone>
+  </div>
+  
+  <div class="card-img-top text-center p-2" *ngIf="screenStatus=='UPLOAD_SUCCESS'" style="background-color: rgba(10, 139, 133, 0.098); color: #3CB8AC;">
+    <span>Upload successfull!</span>
+  </div>
+  <div class="card-body" *ngIf="screenStatus=='UPLOAD_SUCCESS'">
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Parser Name</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div>
+      <span>Sample Document:</span><span class="mx-3">Pharmacy-Invoice.pdf</span> <span style="color:grey">2.3Mb</span>
+    </div>
+    <div style="position: absolute; bottom: 0; width: 100%; left: 0;" class="pb-3">
+      <button class="float-left ml-3 border-btn font-16" (click)="screenStatus='FIRST_SCREEN'">Cancel</button>
+      <button class="float-right mr-3 btn btn-info btn-sm font-16" (click)="onContinue($event)">Click Here to continue</button>
+    </div>
+  </div>
+</div>
+
